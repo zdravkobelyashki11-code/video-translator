@@ -386,18 +386,9 @@ st.set_page_config(page_title="Video Translator", layout="wide")
 st.title("🎥 AI Video Translator")
 st.markdown("Translate YouTube videos to another language using OpenAI's powerful models.")
 
-with st.sidebar:
-    st.header("Configuration")
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        api_key_input = st.text_input("Enter OpenAI API Key", type="password")
-        if api_key_input:
-            os.environ["OPENAI_API_KEY"] = api_key_input
-            api_key = api_key_input
-        else:
-            st.warning("Please provide an API Key in .env or here.")
-    else:
-        st.success("API Key loaded from .env")
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    st.error("OpenAI API Key not found in .env file.")
 
 col1, col2 = st.columns([1, 1])
 
